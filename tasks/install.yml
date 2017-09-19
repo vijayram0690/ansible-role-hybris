@@ -1,0 +1,43 @@
+---
+# author: ZQian
+
+- name: install | 清空安装文件夹
+  file:
+    path: "{{ deploy_path }}"
+    state: absent
+
+- name: install | 创建安装文件夹
+  file:
+    path: "{{ deploy_path }}"
+    state: directory
+    mode: "a+rw"          #: 读写权限
+
+- name: install | 创建package文件夹
+  file:
+    path: "/opt/packages"
+    state: directory
+    mode: "a+rw"
+
+- name: install | 同步Hybris安装包到目标机器
+  copy:
+    src: "{{ hybris_path }}"
+    dest: "/opt/binaries/hybris.zip"
+
+- name: install | 解压Hybris安装包   #unarchive 模块很慢  ，用shell
+  shell: unzip /opt/binaries/hybris.zip -d {{ deploy_path }}
+
+- name: install | 同步Jrebel压缩包至目标机器
+  copy:
+    src: "/opt/binaries/jrebel.zip"
+    dest: "/opt/binaries/jrebel.zip"
+  when: "{{ deploy_jrebel }}"
+
+- name: install | 解压Jrebel压缩包   #unarchive 模块很慢  ，用shell
+  shell: unzip /opt/binaries/jrebel.zip -d {{ jrebel_path }}
+  when: "{{ deploy_jrebel }}"
+
+- name: install | 下载数据库驱动
+  get_url:
+    url: "{{ db_driver_url }}"
+    dest: "{{ deploy_path }}/hybris/bin/platform/lib/dbdriver"
+  when: "{{ not ( not db_driver_url) }}"
