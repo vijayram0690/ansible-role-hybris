@@ -1,7 +1,7 @@
 galaxy_info:
-  author: 1111
-  description: Ansible Role For Hybris
-  company: HAND Enterprise Solution Co., Ltd.
+  author: "ZQiannnn"
+  description: "Ansible Role For Hybris"
+  company: "HAND Enterprise Solution Co., Ltd."
 
   license: license (GPLv2)
 
