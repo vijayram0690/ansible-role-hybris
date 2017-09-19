@@ -1,11 +1,17 @@
 Ansible Role For Hybris
 =======================
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]() [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)]() [![Code Climate](https://img.shields.io/codeclimate/issues/github/me-and/mdf.svg)]()
+提供了如下按顺序ansible task的tags，可选择执行来完成Hybris部署过程中的可持续集成：
+###### 1. install
+^Hybris与Jrebel的安装与部署，数据库驱动下载^
+
 
 Requirements
 ------------
+各个模块需要的linux软件依赖如下：
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+###### 1. install
+^unzip^
+
 
 Role Variables
 --------------
