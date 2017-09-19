@@ -2,7 +2,7 @@ Ansible Role For Hybris
 =======================
 提供了如下按顺序ansible task的tags，可选择执行来完成Hybris部署过程中的可持续集成：
 ###### 1. install
-^Hybris与Jrebel的安装与部署，数据库驱动下载^
+Hybris与Jrebel的安装与部署，数据库驱动下载
 
 
 Requirements
@@ -10,7 +10,7 @@ Requirements
 各个模块需要的linux软件依赖如下：
 
 ###### 1. install
-^unzip^
+unzip
 
 
 Role Variables
