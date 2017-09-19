@@ -1,2 +1,8 @@
 ---
-# defaults file for ansible-role-hybris
+# author: ZQian
+
+deploy_path: /opt/hybris
+package_path: /opt/binaries
+deploy_jrebel: True
+jrebel_path: /opt/jrebel
+db_driver_url:
