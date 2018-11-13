@@ -1,5 +1,5 @@
 ---
-- name: Hybris 安装
+- name: Hybris
   include: install.yml
   tags:
     - install
