@@ -1,52 +1,40 @@
 ---
-# author: ZQian
-- name: install | /opt文件夹权限检查
+- name: install | /opt
   become_user: root
   file:
     path: "/opt"
     state: directory
     mode: a+rw
-- name: install | 创建package文件夹
+    
+- name: install | package
   file:
     path: "~/packages"
     state: directory
 
-- name: install | 清空安装文件夹
+- name: install | 
   file:
     path: "{{ item }}"
     state: absent
   with_items:
     - "{{ deploy_path }}"
-    - "{{ jrebel_path }}"
 
-- name: install | 创建安装文件夹
+
+- name: install |
   file:
     path: "{{ item }}"
     state: directory
   with_items:
     - "{{ deploy_path }}"
-    - "{{ jrebel_path }}"
 
-- name: install | 同步Hybris安装包到目标机器
+- name: install | Hybris
   copy:
     src: "{{ package_path }}/hybris.zip"
     dest: "~/packages/hybris.zip"
 
-- name: install | 解压Hybris安装包   #unarchive 模块很慢  ，用shell
+- name: install | Hybris
   shell: unzip -f -q ~/packages/hybris.zip -d {{ deploy_path }}
 
-
-- name: install | 同步Jrebel压缩包至目标机器
-  copy:
-    src: "{{ package_path }}/jrebel.zip"
-    dest: "~/packages/jrebel.zip"
-  when: "{{ deploy_jrebel }}"
-
-- name: install | 解压Jrebel压缩包   #unarchive 模块很慢  ，用shell
-  shell: unzip -f -q ~/packages/jrebel.zip -d {{ jrebel_path }}
-  when: "{{ deploy_jrebel }}"
-
-- name: install | 下载数据库驱动
+- name: install | 
   get_url:
     url: "{{ db_driver_url }}"
     dest: "{{ deploy_path }}/hybris/bin/platform/lib/dbdriver"
